@@ -52,26 +52,30 @@ class EditorAttentionSeeker {
       });
     }
 
-    this.optionFields.interval = H5PEditor.findField(this.field.attentionseeker.interval, this.fieldInstance);
-    if (this.optionFields.interval) {
-      this.animationParams.interval = this.optionFields.interval.value * 1000;
+    if (this.field.attentionseeker.interval) {
+      this.optionFields.interval = H5PEditor.findField(this.field.attentionseeker.interval, this.fieldInstance);
+      if (this.optionFields.interval) {
+        this.animationParams.interval = this.optionFields.interval.value * 1000;
 
-      ['keydown', 'blur', 'paste'].forEach(listenerType => {
-        this.optionFields.interval.$input.get(0).addEventListener(listenerType, event => {
-          this.handleFieldUpdate('interval', event);
+        ['keydown', 'blur', 'paste'].forEach(listenerType => {
+          this.optionFields.interval.$input.get(0).addEventListener(listenerType, event => {
+            this.handleFieldUpdate('interval', event);
+          });
         });
-      });
+      }
     }
+  
+    if (this.field.attentionseeker.repeat) {
+      this.optionFields.repeat = H5PEditor.findField(this.field.attentionseeker.repeat, this.fieldInstance);
+      if (this.optionFields.repeat) {
+        this.animationParams.repeat = this.optionFields.repeat.value;
 
-    this.optionFields.repeat = H5PEditor.findField(this.field.attentionseeker.repeat, this.fieldInstance);
-    if (this.optionFields.repeat) {
-      this.animationParams.repeat = this.optionFields.repeat.value;
-
-      ['keydown', 'blur', 'paste'].forEach(listenerType => {
-        this.optionFields.repeat.$input.get(0).addEventListener(listenerType, event => {
-          this.handleFieldUpdate('repeat', event);
+        ['keydown', 'blur', 'paste'].forEach(listenerType => {
+          this.optionFields.repeat.$input.get(0).addEventListener(listenerType, event => {
+            this.handleFieldUpdate('repeat', event);
+          });
         });
-      });
+      }
     }
 
     // Stop attention seeker when group collapsed
